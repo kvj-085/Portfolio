@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Bio } from "../../data/constants";
-import { FacebookRounded, Instagram, LinkedIn, X } from "@mui/icons-material";
+import { Email, FacebookRounded, GitHub, Instagram, LinkedIn, X } from "@mui/icons-material";
 
 const FooterContainer = styled.div`
     width: 100%;
@@ -79,7 +79,7 @@ const Footer = () => {
     return (
         <FooterContainer>
             <FooterWrapper>
-                <Logo>Mann Savani</Logo>
+                <Logo>{Bio.name}</Logo>
                 <Nav>
                     <NavLink href="#About">About</NavLink>
                     <NavLink href="#Skills">Skills</NavLink>
@@ -88,20 +88,38 @@ const Footer = () => {
                     <NavLink href="#Education">Education</NavLink>
                 </Nav>
                 <SocialMediaIcons>
-                    <SocialMediaIcon href={Bio.facebook} target="display">
-                        <FacebookRounded />
-                    </SocialMediaIcon>
-                    <SocialMediaIcon href={Bio.X} target="display">
-                        <X />
-                    </SocialMediaIcon>
-                    <SocialMediaIcon href={Bio.linkedin} target="display">
-                        <LinkedIn />
-                    </SocialMediaIcon>
-                    <SocialMediaIcon href={Bio.insta} target="display">
-                        <Instagram />
-                    </SocialMediaIcon>
+                    {Bio.github && (
+                        <SocialMediaIcon href={Bio.github} target="display">
+                            <GitHub />
+                        </SocialMediaIcon>
+                    )}
+                    {Bio.linkedin && (
+                        <SocialMediaIcon href={Bio.linkedin} target="display">
+                            <LinkedIn />
+                        </SocialMediaIcon>
+                    )}
+                    {Bio.email && (
+                        <SocialMediaIcon href={`mailto:${Bio.email}`}>
+                            <Email />
+                        </SocialMediaIcon>
+                    )}
+                    {Bio.X && (
+                        <SocialMediaIcon href={Bio.X} target="display">
+                            <X />
+                        </SocialMediaIcon>
+                    )}
+                    {Bio.insta && (
+                        <SocialMediaIcon href={Bio.insta} target="display">
+                            <Instagram />
+                        </SocialMediaIcon>
+                    )}
+                    {Bio.facebook && (
+                        <SocialMediaIcon href={Bio.facebook} target="display">
+                            <FacebookRounded />
+                        </SocialMediaIcon>
+                    )}
                 </SocialMediaIcons>
-                <Copyright>&copy; 2026 Mann Savani. All rights reserved.</Copyright>
+                <Copyright>&copy; {new Date().getFullYear()} {Bio.name}. All rights reserved.</Copyright>
             </FooterWrapper>
         </FooterContainer>
     );

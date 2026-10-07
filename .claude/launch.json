@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "portfolio-build", "runtimeExecutable": "python", "runtimeArgs": ["-m", "http.server", "5055", "-d", "build"], "port": 5055 }
+  ]
+}

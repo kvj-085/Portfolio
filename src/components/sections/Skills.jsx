@@ -126,7 +126,7 @@ const Skills = () => {
                         marginBottom: "40px",
                     }}
                 >
-                    Here are some of my skills on which I have been working on for the past 2 years.
+                    Here are the languages, frameworks, and tools I work with across data science, machine learning, and full-stack development.
                 </Desc>
 
                 <SkillsContainer>

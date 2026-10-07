@@ -101,7 +101,7 @@ const Projects = () => {
                         marginBottom: "40px",
                     }}
                 >
-                    I have worked on a wide range of projects. From web apps to android apps. Here are some of my projects.
+                    I have worked on a wide range of projects, from full-stack web apps to machine learning and NLP systems. Here are some of them.
                 </Desc>
 
                 <ToggleButtonGroup>
@@ -119,6 +119,10 @@ const Projects = () => {
                     <Divider /> */}
                     <ToggleButton active={toggle === "machine learning"} onClick={() => setToggle("machine learning")}>
                         MACHINE LEARNING
+                    </ToggleButton>
+                    <Divider />
+                    <ToggleButton active={toggle === "data engineering"} onClick={() => setToggle("data engineering")}>
+                        DATA ENGINEERING
                     </ToggleButton>
                 </ToggleButtonGroup>
 

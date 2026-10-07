@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
-import emailjs from "@emailjs/browser";
-import { Snackbar } from "@mui/material";
+import { Email, GitHub, LinkedIn } from "@mui/icons-material";
+import { Bio } from "../../data/constants";
 
 const Container = styled.div`
     display: flex;
@@ -54,129 +54,97 @@ const Desc = styled.div`
     }
 `;
 
-const ContactForm = styled.form`
+const ContactCard = styled.div`
     width: 95%;
     max-width: 600px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     background-color: ${({ theme }) => theme.card};
     padding: 32px;
     border-radius: 16px;
     box-shadow: rgba(23, 92, 230, 0.15) 0px 4px 24px;
     margin-top: 28px;
-    gap: 12px;
+    gap: 16px;
+    box-sizing: border-box;
 `;
 
 const ContactTitle = styled.div`
     font-size: 24px;
-    margin-bottom: 6px;
     font-weight: 600;
     color: ${({ theme }) => theme.text_primary};
 `;
 
-const ContactInput = styled.input`
-    flex: 1;
-    background-color: transparent;
-    border: 1px solid ${({ theme }) => theme.text_secondary};
-    outline: none;
+const EmailText = styled.a`
     font-size: 18px;
-    color: ${({ theme }) => theme.text_primary};
-    border-radius: 12px;
-    padding: 12px 16px;
-    &:focus {
-        border: 1px solid ${({ theme }) => theme.primary};
-    }
-`;
-
-const ContactInputMessage = styled.textarea`
-    flex: 1;
-    background-color: transparent;
-    border: 1px solid ${({ theme }) => theme.text_secondary};
-    outline: none;
-    font-size: 18px;
-    color: ${({ theme }) => theme.text_primary};
-    border-radius: 12px;
-    padding: 12px 16px;
-    &:focus {
-        border: 1px solid ${({ theme }) => theme.primary};
-    }
-`;
-
-const ContactButton = styled.input`
-    width: 100%;
+    color: ${({ theme }) => theme.text_secondary};
     text-decoration: none;
+    word-break: break-all;
     text-align: center;
+    &:hover {
+        color: ${({ theme }) => theme.primary};
+    }
+`;
+
+const ContactButton = styled.a`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-sizing: border-box;
+    text-decoration: none;
     background: hsla(271, 100%, 50%, 1);
     background: linear-gradient(225deg, hsla(271, 100%, 50%, 1) 0%, hsla(294, 100%, 50%, 1) 100%);
-    background: -moz-linear-gradient(225deg, hsla(271, 100%, 50%, 1) 0%, hsla(294, 100%, 50%, 1) 100%);
-    background: -webkit-linear-gradient(225deg, hsla(271, 100%, 50%, 1) 0%, hsla(294, 100%, 50%, 1) 100%);
     padding: 13px 16px;
-    margin-top: 2px;
     border-radius: 12px;
-    border: none;
     color: ${({ theme }) => theme.text_primary};
     font-size: 18px;
     font-weight: 600;
-    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    &:hover {
+        transform: scale(1.02);
+    }
 `;
 
-class Contact extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            openSnackbar: false,
-        };
-        this.formRef = React.createRef();
-        this.handleSubmit = this.handleSubmit.bind(this);
+const SocialLinks = styled.div`
+    display: flex;
+    gap: 20px;
+`;
+
+const SocialLink = styled.a`
+    color: ${({ theme }) => theme.text_primary};
+    font-size: 1.5rem;
+    transition: color 0.2s ease-in-out;
+    &:hover {
+        color: ${({ theme }) => theme.primary};
     }
+`;
 
-    async handleSubmit(e) {
-        e.preventDefault();
-        const form = this.formRef.current;
-
-        // Retrieve values from the input fields
-        const email = form.from_email.value.trim();
-        const name = form.from_name.value.trim();
-        const message = form.message.value.trim();
-
-        // Check if any required field is empty
-        if (!email || !name || !message) {
-            window.alert("Please fill out all the fields properly before submitting.");
-            return;
-        }
-
-        try {
-            await emailjs.sendForm("service_6mkht56", "template_8bhwtio", this.formRef.current, "MmnsbZLgBlyaBHA0f");
-            this.setState({ openSnackbar: true });
-            this.formRef.current.reset();
-            window.alert("Email sent successfully!");
-        } catch (error) {
-            console.error("Error sending email:", error);
-        }
-    }
-
-    render() {
-        const { openSnackbar } = this.state;
-        return (
-            <Container>
-                <Wrapper>
-                    <Title>Contact</Title>
-                    <Desc>Feel free to reach out to me for any questions or opportunities!</Desc>
-                    <ContactForm ref={this.formRef} onSubmit={this.handleSubmit}>
-                        <ContactTitle>Email Me 🚀</ContactTitle>
-                        <ContactInput placeholder="Your Email*" name="from_email" />
-                        <ContactInput placeholder="Your Name*" name="from_name" />
-                        <ContactInput placeholder="Subject" name="subject" />
-                        <ContactInputMessage placeholder="Message*" rows="4" name="message" />
-                        <ContactButton type="submit" value="Send" />
-                    </ContactForm>
-                    <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={() => this.setState({ openSnackbar: false })} message="Email sent successfully!" severity="success" />
-                </Wrapper>
-            </Container>
-        );
-    }
-}
+const Contact = () => {
+    return (
+        <Container>
+            <Wrapper>
+                <Title>Contact</Title>
+                <Desc>Feel free to reach out to me for any questions or opportunities!</Desc>
+                <ContactCard>
+                    <ContactTitle>Email Me 🚀</ContactTitle>
+                    <EmailText href={`mailto:${Bio.email}`}>{Bio.email}</EmailText>
+                    <ContactButton href={`mailto:${Bio.email}`}>
+                        <Email /> Send me an email
+                    </ContactButton>
+                    <SocialLinks>
+                        <SocialLink href={Bio.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                            <LinkedIn fontSize="inherit" />
+                        </SocialLink>
+                        <SocialLink href={Bio.github} target="_blank" rel="noreferrer" aria-label="GitHub">
+                            <GitHub fontSize="inherit" />
+                        </SocialLink>
+                    </SocialLinks>
+                </ContactCard>
+            </Wrapper>
+        </Container>
+    );
+};
 
 export default Contact;
-
-// emailjs.sendForm("service_6mkht56", "template_8bhwtio", form.current, "MmnsbZLgBlyaBHA0f").then(
