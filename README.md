@@ -51,6 +51,3 @@ Everything shown on the site lives in one file: [`src/data/constants.js`](src/da
 
 The **Check Resume** button serves [`public/Veera_Jeeshitha_Kolla_Resume.pdf`](public/Veera_Jeeshitha_Kolla_Resume.pdf). To publish a new version, overwrite that file with the new PDF (keep the same filename), then commit and redeploy — no code changes needed.
 
-## Credits
-
-Based on the open-source 3D portfolio template by [Mann Savani](https://github.com/Alpha-Stark), used with permission.
