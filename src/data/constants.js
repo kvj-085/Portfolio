@@ -5,9 +5,9 @@ const initialsLogo = (name) => `https://ui-avatars.com/api/?name=${encodeURIComp
 export const Bio = {
     name: "Veera Jeeshitha Kolla",
     image: "https://github.com/kvj-085.png",
-    roles: ["Data Scientist.", "ML Engineer.", "Full Stack Developer."],
+    roles: ["Data Scientist.", "ML Engineer.", "Full Stack Developer.", "AI Engineer."],
     description:
-        "Data Science graduate student at Rutgers University with hands-on experience in Machine Learning, NLP, and full-stack development. I build end-to-end systems — from real-time data pipelines and fine-tuned transformer models to agentic LLM applications and production web apps — and love turning data into products people actually use.",
+        "Data Science graduate student at Rutgers University with hands-on experience in Machine Learning, NLP, and full-stack development. I build end-to-end systems, from real-time data pipelines and fine-tuned transformer models to agentic LLM applications and production web apps. And love turning data into products people actually use.",
     github: "https://github.com/kvj-085",
     resume: "/Veera_Jeeshitha_Kolla_Resume.pdf",
     linkedin: "https://www.linkedin.com/in/veera-jeeshitha-kolla/",
